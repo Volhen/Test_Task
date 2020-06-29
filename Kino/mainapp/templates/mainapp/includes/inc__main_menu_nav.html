@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light d-md-none xsNavBar">
+    <a class="navbar-brand xsLogo" href="{#% url 'main:index' %#}">KinoCMS</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbar1" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse collapse" id="navbar1">
+        <ul class="nav navbar-nav mr-auto">
+            <li class="nav-item">
+                <a href="{% url 'main:index' %}" 
+                class="nav-link {% if request.resolver_match.url_name == 'index'%}active{% endif %}">
+                    Главная
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'main:poster' %}"
+                class="nav-link {% if request.resolver_match.url_name == 'poster'%}active{% endif %}">
+                    Афиша
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{#% url 'main:contacts' %#}" 
+                class="nav-link {#% if request.resolver_match.url_name == 'contacts'%#}active{#% endif %#}">
+                    Войти
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

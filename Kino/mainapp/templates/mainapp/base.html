@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="ru">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        KinoCMS / {{ page_title }} 
+    </title>
+    <!-- Bootstrap CSS -->
+    {% block CSS %}
+        <!-- MDB icon -->
+        <link rel="icon" href="{% static 'image/marvel.png' %}" type="image/x-icon">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- Google Fonts Roboto, Lobster -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster&display=swap&subset=cyrillic,cyrillic-ext">
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <!-- Bootstrap menu -->
+        <link rel="stylesheet" href="http://bootstraptema.ru/snippets/menu/2017/vam.md.css"/>
+        <!-- Your custom styles (optional) -->
+        <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    {% endblock %}
+    {% block JS %}
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <script src="http://bootstraptema.ru/plugins/jquery/jquery-1.11.3.min.js"></script>
+        <script src="http://bootstraptema.ru/snippets/menu/2017/vam.md.js"></script>
+        <!-- Your custom scripts (optional) -->
+        <script src="{% static '/js/menu.js' %}"></script>    
+    {% endblock %}
+</head>
+
+<body>
+    <header>
+        <div class="container-fluid">
+            {% include 'mainapp/includes/inc__main_menu_nav.html' %}
+            <a href="{% url 'main:index' %}" class="logo d-none d-md-block d-xs-none"></a>
+            <div class="social_buttons">
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-youtube"></i>
+                <i class="fab fa-pinterest-p"></i>
+                <i class="fab fa-instagram"></i>
+            </div>
+            <div class="funride">
+                <div class="funride_header">
+                    Новый топ 10 <br><br> фильмов 2020
+                </div>
+                <div class="funride_text">
+                    Мы предлагает новый <br> топ 10 фильмов для <br> вашего выбора <br> смотри и наслаждайся!!!.
+                </div>
+                <button>Подробно</button>
+            </div>
+            <div class="welcome_to">
+                <div class="title_up">
+                    добро пожаловать в
+                    <div class="surfhouse">
+                        KinoCMS
+                    </div>
+                </div>
+
+                <div class="title_down">
+                    Единственный интернет-портал, <br> который предлагает вам окунуться в мир<br> кино, безграничной фантазии и удовольствия.
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 col-sm-4">
+                    {% include 'mainapp/includes/inc__main_menu.html' %}
+                    <div class="now_is_open">
+                        <div class="now_is_open_img">
+                            <div class="now_text">
+                                Здесь <br> ваша <br> реклама!<br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-sm-8">
+                    {% block content %}
+                        <div class='content2'></div>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footerCopyrights mt-3">
+            <div class="container copyrightsInside">
+                <div class="footerCopySign">
+                    &copy; 2020  KinoCMS. All rights reserved
+                </div>
+                <div class="footerSocials">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-pinterest-p"></i>
+                    <i class="fab fa-google-plus"></i>
+                    <i class="fab fa-tumblr"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-feed"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
