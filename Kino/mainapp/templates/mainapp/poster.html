@@ -4,27 +4,42 @@
 
 {% block content %}
     <div class='content2'> 
-        <div class="contentHeader newProductsHeader">
-            Сегодня: 
-        </div>
-        <div id="product" class="row justify-content-center">
-            {% if films %}
-                {% for  item in films %}
-                    <div class="card text-center col-lg-3 col-md-5 col-sm-9 col-12 mr-3 mt-3" style="width:270px">
-                        <img class="card-img-top" src="/media/{{item.main_picture}}" alt="Film image">
-                        <div class="card-body">
-                            <h6 class="card-title">{{item.name }}</h6>
-                            {% comment %} <p class="card-text">{{item.seo_title}}</p>
-                            <p>Цена: &euro;&nbsp;{{item.seo_Keywords}}</p> {% endcomment %}
-                        </div> 
-                        <div class="card-footer">
-                            <a href="{% url 'main:film' item.pk %}" class=" btn btn-primary ">КУПИТЬ</a>
-                        </div>
-                    </div>
-                {% endfor %}
-            {% else %}
-                <h3>Данные отсутствуют !!!</h3>
-            {% endif %}
-        </div> 
+        {% if categorys %}
+            {% for category in categorys %}
+                <div class="contentHeader newProductsHeader">
+                    Категория: "{{ category.name|title }}" 
+                </div>
+                <div id="product" class="row justify-content-center">
+                    {% if films %}
+                        {% for film in films %}
+                            {% if category.name == film.category.name %}
+                                <div class="card text-center col-lg-3 col-md-5 col-sm-9 col-12 mr-3 mt-3" style="width:270px">
+                                    <img class="card-img-top" src="/media/{{film.main_picture}}" alt="Film image">
+                                    <div class="card-body">
+                                        <h6 class="card-title">{{film.name }}</h6>
+                                    </div> 
+
+                                    {% if user.is_authenticated %}
+                                        <div class="card-footer">
+                                            <a href="{% url 'main:film' film.pk %}" class=" btn btn-primary ">КУПИТЬ</a>
+                                        </div>
+                                    {% else %}
+                                    <div class="card-footer">
+                                        <a href="{% url 'auth:login' %}"  class="btn btn-primary">
+                                            купить 
+                                        </a>
+                                    </div>
+                                    {% endif %} 
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <h3>Данные отсутствуют !!!</h3>
+                    {% endif %}
+                </div> 
+            {% endfor %}
+        {% else %}
+            <h3>Категории отсутствуют !!!</h3>
+        {% endif %}
     </div>
 {% endblock %}

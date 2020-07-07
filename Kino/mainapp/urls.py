@@ -9,8 +9,4 @@ urlpatterns = [
     path('', mainapp.index, name='index'),
     path('poster/', mainapp.poster, name='poster'),
     path('film<int:pk>/', mainapp.film, name='film'),
-
-    # path('catalog/', mainapp.catalog, name='catalog'),
-    # path('blog/', mainapp.blog, name='blog'),
-    # path('about/', mainapp.about, name='about'),
 ]

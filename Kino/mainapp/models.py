@@ -1,7 +1,31 @@
 from django.db import models
 
 
+class FilmCategory(models.Model):
+    name = models.CharField(
+        verbose_name='Название',
+        max_length=64,
+        unique=True
+    )
+    description = models.TextField(
+        verbose_name='Описание',
+        blank=True
+    )
+    is_active = models.BooleanField(
+        verbose_name='Активна',
+        db_index=True,
+        default=True
+    )
+
+    def __str__(self):
+        return self.name
+
+
 class Film(models.Model):
+    category = models.ForeignKey(
+        FilmCategory,
+        on_delete=models.CASCADE
+    )
     name = models.CharField(
         verbose_name='Название фильма',
         max_length=50
@@ -51,9 +75,18 @@ class Film(models.Model):
         verbose_name='Description',
         blank=True
     )
+    is_active = models.BooleanField(
+        verbose_name='активен',
+        db_index=True,
+        default=True
+    )
 
     def __str__(self):
-        return self.name
+        return f"{self.name} ({self.category.name})"
+
+    @staticmethod
+    def get_items():
+        return Film.objects.filter(category__is_active=True, is_active=True).order_by('category', 'name')
 
 
 class FileFilm(models.Model):
@@ -62,4 +95,4 @@ class FileFilm(models.Model):
         upload_to='picture_gallery',
         blank=True
     )
-    film = models.ForeignKey(Film, on_delete=models.CASCADE)
+    film = models.ForeignKey(Film, on_delete=models.CASCADE, related_name='images')

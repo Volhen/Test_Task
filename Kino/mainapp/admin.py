@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Film, FileFilm
+from .models import Film, FileFilm, FilmCategory
 
 
 class FileInline(admin.TabularInline):
@@ -13,3 +13,4 @@ class FileAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Film, FileAdmin)
+admin.site.register(FilmCategory)
